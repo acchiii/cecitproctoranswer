@@ -6,7 +6,6 @@ const ctx = canvas.getContext('2d');
 let questionsData = [];
 let lastAnswer = null;
 
-// 🧠 Load data from localStorage
 function loadData() {
   try {
     const raw = localStorage.getItem('data');
@@ -15,12 +14,11 @@ function loadData() {
       return;
     }
 
-    // Parse the string into an object
     const parsed = JSON.parse(raw);
 
     if (Array.isArray(parsed.questions)) {
       questionsData = parsed.questions;
-      //console.log(`✅ Loaded ${questionsData.length} questions`);
+      //console.log(`Loaded ${questionsData.length} questions`);
     } else {
       output.innerHTML = `<pre style="color:red;">⚠️ Invalid data format: ${JSON.stringify(parsed, null, 2)}</pre>`;
     }
@@ -29,7 +27,7 @@ function loadData() {
   }
 }
 
-// 🎥 Start the webcam
+
 async function startCamera() {
   try {
    const stream = await navigator.mediaDevices.getUserMedia({
@@ -43,11 +41,11 @@ async function startCamera() {
   }
 }
 
-// 🔍 Scan every 5 seconds
+
 async function scanFrame() {
   //console.log('🔁 Scanning frame...');
 
-  // Reload JSON each scan (if you update it)
+ 
   loadData();
 
   if (!questionsData.length) {
@@ -55,16 +53,16 @@ async function scanFrame() {
     return;
   }
 
-  // Capture current frame
+
   canvas.width = video.videoWidth;
   canvas.height = video.videoHeight;
   ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-  // OCR detection
+
   const result = await Tesseract.recognize(canvas, 'eng');
   const detectedText = result.data.text.toLowerCase().trim();
 
-  // Try to find a match
+ 
   const match = questionsData.find(q => {
     const questionText = (q.question || '').toLowerCase();
     return detectedText.includes(questionText.slice(0, 25));
@@ -75,7 +73,7 @@ async function scanFrame() {
       console.log(`Detected Question: ${match.code}`);
       console.log(`Answer: ${match.answer}`);
       output.innerHTML = `<span style="color:Black; font-size: 30px;">Detected Question: ${match.question}</span>` + 
-    `<br><span style="color:red; font-size: 30px;">${match.answer}</span>`;
+    `<br><span style="color:red; font-size: 30px;">Answer: ${match.answer}</span>`;
       speak(match.answer)
       lastAnswer = match.answer;
     } else {
@@ -86,25 +84,25 @@ async function scanFrame() {
   }
 }
 
-// ⏱️ Auto-scan loop
+
 function startAutoScan() {
-  setInterval(scanFrame, 2000); // every 5 seconds
+  setInterval(scanFrame, 2000); 
 }
 
-// 🔊 Speak the answer aloud
+
 function speak(text) {
   if (!text) return;
   const utter = new SpeechSynthesisUtterance(text);
-  utter.lang = "en-US";          // language/accent
-  utter.rate = 1;                // speed (0.5–2)
-  utter.pitch = 1;               // voice pitch
-  speechSynthesis.cancel();      // stop any previous speech
+  utter.lang = "en-US";         
+  utter.rate = 1;                
+  utter.pitch = 1;              
+  speechSynthesis.cancel();    
   speechSynthesis.speak(utter);
 }
 
-// 🚀 Initialize everything
+
 (async function init() {
-  loadData();       // load from localStorage
+  loadData();      
   await startCamera();
   startAutoScan();
 })();

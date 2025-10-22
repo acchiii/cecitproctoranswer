@@ -45,8 +45,8 @@ function decode(data) {
  data.questions.forEach((q, index) => {
 
     let qq = `<span style="color: green;"><b>${index + 1}. ${q.question}</b></span><br>`;
-    let a = `<span style="color: red;"><span style="color: yellow;">Answer:</span> <i>${q.answer}</i></span><br><br><br>`;
-    //result.innerHTML += qq + a;
+    let a = `<span style="color: red;"><span style="color: blue;">Answer:</span> <i>${q.answer}</i></span><br><br><br>`;
+    result.innerHTML += qq + a;
  });
 
 }
