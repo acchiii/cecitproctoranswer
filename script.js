@@ -1,7 +1,7 @@
 
 
 const xxx = "https://script.google.com/macros/s/AKfycbxw4dITKgZHApGwPWdciAWvMMofoT6-jwyqwQK-GPZLQxS23jQxEyWhGk53_58LHKcWIQ/exec";
-let code = 'IASTEST1'; //IAS730Final
+let code = localStorage.getItem('code'); //IAS730Final
 let a = dsd('P2FjdGlvbj1nZXRBbGxRdWVzdGlvbnNBbmRBbnN3ZXJzJmNvZGU9'); //?action=getAllQuestionsAndAnswers&code=
 const result = document.getElementById('result');
 

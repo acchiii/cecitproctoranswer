@@ -39,19 +39,19 @@ async function startCamera() {
     video.setAttribute('playsinline', true);
     video.srcObject = stream;
   } catch (err) {
-    console.error("❌ Camera access denied:", err);
+    //console.error("❌ Camera access denied:", err);
   }
 }
 
 // 🔍 Scan every 5 seconds
 async function scanFrame() {
-  console.log('🔁 Scanning frame...');
+  //console.log('🔁 Scanning frame...');
 
   // Reload JSON each scan (if you update it)
   loadData();
 
   if (!questionsData.length) {
-    console.warn("⚠️ No question data loaded yet.");
+    //console.warn("⚠️ No question data loaded yet.");
     return;
   }
 
@@ -79,10 +79,10 @@ async function scanFrame() {
       speak(match.answer)
       lastAnswer = match.answer;
     } else {
-      console.log(`⏭️ Same answer detected again — skipped.`);
+      //console.log(`⏭️ Same answer detected again — skipped.`);
     }
   } else {
-    console.log("❌ No match found in this frame.");
+    //console.log("❌ No match found in this frame.");
   }
 }
 

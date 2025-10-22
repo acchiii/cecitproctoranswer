@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CEC IT PROCTOR ANSWER</title>
+
     <style>
-      * {
+        * {
                 padding: 0;
                 margin: 0;
                 scrollbar-width: 0;
@@ -57,20 +58,35 @@
     </style>
 </head>
 <body>
-    <section id="sec">
+    
+<!-- Create a Modal to get CODE 
+ <section id="sec">
     <div>
         <h2 >Enter Exam Code</h2><br>
-        <input type="text" name="code" id="codetext" placeholder="Enter exam Code" required>
+        <input type="text" name="code" id="codetext" placeholder="Enter exam Code">
         <button id="btn">Continue</button>
     </div>
- </section> 
+ </section> -->
 
- <script>
-    document.getElementById('btn').addEventListener('click', function(){
-        
-        localStorage.setItem('code', document.getElementById('codetext').value)
-        window.location = 'main.html'
-    })
- </script>
+ <section id="sec">
+    <div>
+       <video id="video" autoplay playsinline width="400" style="border-radius: 15px;"></video>
+
+  <canvas id="canvas" style="display:none; border-radius: 15px;"></canvas>
+ 
+       <pre id="output"></pre>
+
+ 
+    <p id="result"></p>
+    </div>
+ </section>
+
+  
+ 
+ 
 </body>
+<script src="script.js" type="module"></script>
+ <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+  <script src="scanner.js"></script>   
+
 </html>

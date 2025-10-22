@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Auto Question Viewer</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #0f172a;
+      color: #f8fafc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: "Segoe UI", sans-serif;
+      text-align: center;
+      padding: 2rem;
+    }
+    #questionBox {
+      font-size: 2rem;
+      max-width: 900px;
+      line-height: 1.4;
+      transition: opacity 0.6s ease;
+    }
+    #info {
+      position: absolute;
+      bottom: 1rem;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: #94a3b8;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div id="questionBox">Loading questions...</div>
+  <div id="info"></div>
+
+  <script>
+    const data ={
+  "questions": [
+    {
+      "num": 1,
+      "code": "Q001",
+      "question": "The purpose of a  _______ is to establish clear rules and expectations for protecting an organization’s information systems and dat<br><small>(Partial choices - enter letter or full answer)</small>",
+      "answer": "Security Policy",
+      "timerSeconds": 25
+    },
+    {
+      "num": 2,
+      "code": "Q002",
+      "question": "What law ensures compliance in data protection as mentioned in the document? ( Complete )",
+      "answer": "Data Privacy Act of 2012",
+      "timerSeconds": 25
+    },
+    {
+      "num": 3,
+      "code": "Q003",
+      "question": "What is the term for the policy that defines acceptable and unacceptable IT behavior?",
+      "answer": "Acceptable Use Policy",
+      "timerSeconds": 25
+    },
+    {
+      "num": 4,
+      "code": "Q004",
+      "question": "An ________ is a structured approach to detecting, responding to, and recovering from security incidents like data breaches, malware, or unauthorized access.",
+      "answer": "Incident Response Plan",
+      "timerSeconds": 25
+    },
+    {
+      "num": 5,
+      "code": "Q005",
+      "question": "What phase of incident response involves isolating affected systems?",
+      "answer": "Containment",
+      "timerSeconds": 25
+    },
+    {
+      "num": 6,
+      "code": "Q006",
+      "question": "What phase of incident response involves removing the cause of the incident?",
+      "answer": "Eradication",
+      "timerSeconds": 25
+    },
+    {
+      "num": 7,
+      "code": "Q007",
+      "question": "What policy outlines what users can and cannot do with IT resources?",
+      "answer": "Acceptable Use Policy",
+      "timerSeconds": 25
+    },
+    {
+      "num": 8,
+      "code": "Q008",
+      "question": "What does IRP stand for?",
+      "answer": "Incident Response Plan",
+      "timerSeconds": 25
+    },
+    {
+      "num": 9,
+      "code": "Q009",
+      "question": "The scope defines who and what the policy applies to, such as employees, students, ________ _______, networks, and data storage devices.",
+      "answer": "computer systems",
+      "timerSeconds": 25
+    },
+    {
+      "num": 10,
+      "code": "Q010",
+      "question": "What does a good security policy help reduce risk from?",
+      "answer": "cyber threats",
+      "timerSeconds": 25
+    },
+    {
+      "num": 11,
+      "code": "Q011",
+      "question": "Which of the following best describes the purpose of security policies<br> a. To restrict access to the internet<br> b. To establish rules for data protection<br> c. To manage social media accounts<br> d. To monitor employee attendance",
+      "answer": "b",
+      "timerSeconds": 25
+    },
+    {
+      "num": 12,
+      "code": "Q012",
+      "question": "What does the Acceptable Use Policy (AUP) prohibit<br> a. Accessing authorized data<br> b. Sharing login credentials<br> c. Doing assignments<br> d. Communicating through email",
+      "answer": "b",
+      "timerSeconds": 25
+    },
+    {
+      "num": 13,
+      "code": "Q013",
+      "question": "Which law mentioned ensures compliance in data protection<br> a. Cybercrime Law<br> b. Data Privacy Act of 2012<br> c. Freedom of Information Act<br> d. Computer Security Act",
+      "answer": "b",
+      "timerSeconds": 25
+    },
+    {
+      "num": 14,
+      "code": "Q014",
+      "question": "What happens if a student installs cracked software according to the example<br> a. They get extra credit<br> b. Their account is disabled for a week<br> c. They receive free software<br> d. They are promoted",
+      "answer": "b",
+      "timerSeconds": 25
+    },
+    {
+      "num": 15,
+      "code": "Q015",
+      "question": "In which phase of IRP are incidents detected and confirmed<br> a. Identification<br> b. Preparation<br> c. Containment<br> d. Recovery",
+      "answer": "a",
+      "timerSeconds": 25
+    },
+    {
+      "num": 16,
+      "code": "Q016",
+      "question": "Which of the following is an example of acceptable activity under AUP<br> a. Cyberbullying<br> b. Research and communication<br> c. Installing unapproved software<br> d. Accessing unauthorized data",
+      "answer": "b",
+      "timerSeconds": 25
+    },
+    {
+      "num": 17,
+      "code": "Q017",
+      "question": "What is the first phase of an Incident Response Plan<br> a. Recovery<br> b. Preparation<br> c. Containment<br> d. Identification",
+      "answer": "b",
+      "timerSeconds": 25
+    },
+    {
+      "num": 18,
+      "code": "Q018",
+      "question": "Which of the following is NOT part of an AUP<br> a. Purpose<br> b. Scope<br> c. Incident handling<br> d. Consequences",
+      "answer": "c",
+      "timerSeconds": 25
+    },
+    {
+      "num": 19,
+      "code": "Q019",
+      "question": "What is the last phase of incident response<br> a. Lessons Learned<br> b. Recovery<br> c. Containment<br> d. Preparation",
+      "answer": "a",
+      "timerSeconds": 25
+    },
+    {
+      "num": 20,
+      "code": "Q020",
+      "question": "Who must follow the security policy according to the scope<br> a. Only students<br> b. Only IT staff<br> c. Everyone including employees, students, and contractors<br> d. Management only",
+      "answer": "c",
+      "timerSeconds": 25
+    },
+    {
+      "num": 21,
+      "code": "Q021",
+      "question": "Security policies are optional and not essential for organizations. (True or False)",
+      "answer": "-",
+      "timerSeconds": 25
+    },
+    {
+      "num": 22,
+      "code": "Q022",
+      "question": "The Acceptable Use Policy ensures responsible and ethical use of IT systems. (True or False)",
+      "answer": "true",
+      "timerSeconds": 25
+    },
+    {
+      "num": 23,
+      "code": "Q023",
+      "question": "Incident Response Plan helps respond to natural disasters. (True or False)",
+      "answer": "-",
+      "timerSeconds": 25
+    },
+    {
+      "num": 24,
+      "code": "Q024",
+      "question": "Containment phase involves isolating affected systems. (True or False)",
+      "answer": "true",
+      "timerSeconds": 25
+    },
+    {
+      "num": 25,
+      "code": "Q025",
+      "question": "The AUP allows downloading pirated software. (True or False)",
+      "answer": "-",
+      "timerSeconds": 25
+    },
+    {
+      "num": 26,
+      "code": "Q026",
+      "question": "Lessons Learned phase aims to prevent future incidents. (True or False)",
+      "answer": "true",
+      "timerSeconds": 25
+    },
+    {
+      "num": 27,
+      "code": "Q027",
+      "question": "AUP applies only to faculty members. (True or False)",
+      "answer": "-",
+      "timerSeconds": 25
+    },
+    {
+      "num": 28,
+      "code": "Q028",
+      "question": "Security policies protect confidentiality, integrity, and availability of information. (True or False)",
+      "answer": "true",
+      "timerSeconds": 25
+    },
+    {
+      "num": 29,
+      "code": "Q029",
+      "question": "IRP stands for Internet Response Policy. (True or False)",
+      "answer": "-",
+      "timerSeconds": 25
+    },
+    {
+      "num": 30,
+      "code": "Q030",
+      "question": "The Data Privacy Act of 2012 is mentioned as a compliance law. (True or False)",
+      "answer": "true",
+      "timerSeconds": 25
+    }
+  ],
+  "questionsMap": {
+    "Q001": {
+      "code": "Q001",
+      "question": "The purpose of a  _______ is to establish clear rules and expectations for protecting an organization’s information systems and dat<br><small>(Partial choices - enter letter or full answer)</small>",
+      "answer": "Security Policy",
+      "timerSeconds": 25
+    },
+    "Q002": {
+      "code": "Q002",
+      "question": "What law ensures compliance in data protection as mentioned in the document? ( Complete )",
+      "answer": "Data Privacy Act of 2012",
+      "timerSeconds": 25
+    },
+    "Q003": {
+      "code": "Q003",
+      "question": "What is the term for the policy that defines acceptable and unacceptable IT behavior?",
+      "answer": "Acceptable Use Policy",
+      "timerSeconds": 25
+    },
+    "Q004": {
+      "code": "Q004",
+      "question": "An ________ is a structured approach to detecting, responding to, and recovering from security incidents like data breaches, malware, or unauthorized access.",
+      "answer": "Incident Response Plan",
+      "timerSeconds": 25
+    },
+    "Q005": {
+      "code": "Q005",
+      "question": "What phase of incident response involves isolating affected systems?",
+      "answer": "Containment",
+      "timerSeconds": 25
+    },
+    "Q006": {
+      "code": "Q006",
+      "question": "What phase of incident response involves removing the cause of the incident?",
+      "answer": "Eradication",
+      "timerSeconds": 25
+    },
+    "Q007": {
+      "code": "Q007",
+      "question": "What policy outlines what users can and cannot do with IT resources?",
+      "answer": "Acceptable Use Policy",
+      "timerSeconds": 25
+    },
+    "Q008": {
+      "code": "Q008",
+      "question": "What does IRP stand for?",
+      "answer": "Incident Response Plan",
+      "timerSeconds": 25
+    },
+    "Q009": {
+      "code": "Q009",
+      "question": "The scope defines who and what the policy applies to, such as employees, students, ________ _______, networks, and data storage devices.",
+      "answer": "computer systems",
+      "timerSeconds": 25
+    },
+    "Q010": {
+      "code": "Q010",
+      "question": "What does a good security policy help reduce risk from?",
+      "answer": "cyber threats",
+      "timerSeconds": 25
+    },
+    "Q011": {
+      "code": "Q011",
+      "question": "Which of the following best describes the purpose of security policies<br> a. To restrict access to the internet<br> b. To establish rules for data protection<br> c. To manage social media accounts<br> d. To monitor employee attendance",
+      "answer": "b",
+      "timerSeconds": 25
+    },
+    "Q012": {
+      "code": "Q012",
+      "question": "What does the Acceptable Use Policy (AUP) prohibit<br> a. Accessing authorized data<br> b. Sharing login credentials<br> c. Doing assignments<br> d. Communicating through email",
+      "answer": "b",
+      "timerSeconds": 25
+    },
+    "Q013": {
+      "code": "Q013",
+      "question": "Which law mentioned ensures compliance in data protection<br> a. Cybercrime Law<br> b. Data Privacy Act of 2012<br> c. Freedom of Information Act<br> d. Computer Security Act",
+      "answer": "b",
+      "timerSeconds": 25
+    },
+    "Q014": {
+      "code": "Q014",
+      "question": "What happens if a student installs cracked software according to the example<br> a. They get extra credit<br> b. Their account is disabled for a week<br> c. They receive free software<br> d. They are promoted",
+      "answer": "b",
+      "timerSeconds": 25
+    },
+    "Q015": {
+      "code": "Q015",
+      "question": "In which phase of IRP are incidents detected and confirmed<br> a. Identification<br> b. Preparation<br> c. Containment<br> d. Recovery",
+      "answer": "a",
+      "timerSeconds": 25
+    },
+    "Q016": {
+      "code": "Q016",
+      "question": "Which of the following is an example of acceptable activity under AUP<br> a. Cyberbullying<br> b. Research and communication<br> c. Installing unapproved software<br> d. Accessing unauthorized data",
+      "answer": "b",
+      "timerSeconds": 25
+    },
+    "Q017": {
+      "code": "Q017",
+      "question": "What is the first phase of an Incident Response Plan<br> a. Recovery<br> b. Preparation<br> c. Containment<br> d. Identification",
+      "answer": "b",
+      "timerSeconds": 25
+    },
+    "Q018": {
+      "code": "Q018",
+      "question": "Which of the following is NOT part of an AUP<br> a. Purpose<br> b. Scope<br> c. Incident handling<br> d. Consequences",
+      "answer": "c",
+      "timerSeconds": 25
+    },
+    "Q019": {
+      "code": "Q019",
+      "question": "What is the last phase of incident response<br> a. Lessons Learned<br> b. Recovery<br> c. Containment<br> d. Preparation",
+      "answer": "a",
+      "timerSeconds": 25
+    },
+    "Q020": {
+      "code": "Q020",
+      "question": "Who must follow the security policy according to the scope<br> a. Only students<br> b. Only IT staff<br> c. Everyone including employees, students, and contractors<br> d. Management only",
+      "answer": "c",
+      "timerSeconds": 25
+    },
+    "Q021": {
+      "code": "Q021",
+      "question": "Security policies are optional and not essential for organizations. (True or False)",
+      "answer": "-",
+      "timerSeconds": 25
+    },
+    "Q022": {
+      "code": "Q022",
+      "question": "The Acceptable Use Policy ensures responsible and ethical use of IT systems. (True or False)",
+      "answer": "true",
+      "timerSeconds": 25
+    },
+    "Q023": {
+      "code": "Q023",
+      "question": "Incident Response Plan helps respond to natural disasters. (True or False)",
+      "answer": "-",
+      "timerSeconds": 25
+    },
+    "Q024": {
+      "code": "Q024",
+      "question": "Containment phase involves isolating affected systems. (True or False)",
+      "answer": "true",
+      "timerSeconds": 25
+    },
+    "Q025": {
+      "code": "Q025",
+      "question": "The AUP allows downloading pirated software. (True or False)",
+      "answer": "-",
+      "timerSeconds": 25
+    },
+    "Q026": {
+      "code": "Q026",
+      "question": "Lessons Learned phase aims to prevent future incidents. (True or False)",
+      "answer": "true",
+      "timerSeconds": 25
+    },
+    "Q027": {
+      "code": "Q027",
+      "question": "AUP applies only to faculty members. (True or False)",
+      "answer": "-",
+      "timerSeconds": 25
+    },
+    "Q028": {
+      "code": "Q028",
+      "question": "Security policies protect confidentiality, integrity, and availability of information. (True or False)",
+      "answer": "true",
+      "timerSeconds": 25
+    },
+    "Q029": {
+      "code": "Q029",
+      "question": "IRP stands for Internet Response Policy. (True or False)",
+      "answer": "-",
+      "timerSeconds": 25
+    },
+    "Q030": {
+      "code": "Q030",
+      "question": "The Data Privacy Act of 2012 is mentioned as a compliance law. (True or False)",
+      "answer": "true",
+      "timerSeconds": 25
+    }
+  },
+  "defaultTimerSeconds": 25
+}
+
+    const questionBox = document.getElementById("questionBox");
+    const info = document.getElementById("info");
+
+    let index = 0;
+    const changeInterval = 10000; // 30 seconds
+
+    function showQuestion() {
+      const q = data.questions[index];
+      questionBox.style.opacity = 0;
+
+      setTimeout(() => {
+        questionBox.innerHTML = `<div><b>${q.code}</b>: ${q.question} Answer:  ${q.question} ${q.question}<b><br> ${q.answer}</b></div>`;
+        info.innerHTML = `Question ${q.num} of ${data.questions.length} — Next in 30s`;
+        questionBox.style.opacity = 1;
+      }, 500);
+
+      index = (index + 1) % data.questions.length;
+    }
+
+    // Start rotation
+    showQuestion();
+    setInterval(showQuestion, changeInterval);
+  </script>
+</body>
+</html>
