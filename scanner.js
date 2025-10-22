@@ -45,6 +45,7 @@ async function startCamera() {
     video.play();
   //startScan()
 
+
   } catch (err) {
     //console.error("Camera access denied:", err);
   }
@@ -114,17 +115,17 @@ function speak(text) {
 (async function init() {
   loadData();      
   
-/*
+
   document.body.addEventListener('keydown', (event) =>{
     if(event.key == 'Enter' || event.key == 'Space'){
-      //startScan();
+      scanFrame();
     }
   });
 
   document.body.addEventListener('click', function(){
-    //startScan();
+    scanFrame();
   })
-  */
+  
 })();
 
 
@@ -134,6 +135,7 @@ const se = document.getElementById('search');
 
 se.addEventListener('input', ()=>{
   let sd = se.value;
+  if(!(sd.length>2 ) || !sd.includes(' '))  return;
    const mm = questionsData.find(qq => {
   const questionText = (qq.question || '').toLowerCase();
   return questionText.includes(sd.toLowerCase());
@@ -143,7 +145,7 @@ se.addEventListener('input', ()=>{
     if (lastAnswer !== mm.answer) {
       output.innerHTML = `<br><span style="color:red; font-weight: bold;">Answer: ${mm.answer == '-' ? 'false' : mm.answer}</span><br>` 
       + `<span style="color:blue; ">Detected Question:</span> ${mm.question}` ;
-      if(se.value.length > 0){ speak( `${mm.answer == '-' ? 'false' : mm.answer}`)}else {output.innerHTML = "Answer shows here..."}
+      if(se.value.length > 0){ speak( `${mm.answer == '-' ? 'false' : mm.answer}`)}else {output.innerHTML = "Answer shows here...<br>(If you will use camera, focus the cam and touch the screen to answer)"}
       lastAnswer = `${mm.answer == '-' ? 'false' : mm.answer}`;
 
     }
