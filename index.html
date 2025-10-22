@@ -67,10 +67,18 @@
         <button id="btn">Continue</button>
     </div>
  </section> -->
+
+ 
+  <video id="video" autoplay playsinline width="400"></video>
+  <button id="captureBtn">Scan Text</button>
+  <canvas id="canvas" style="display:none;"></canvas>
+  <pre id="output"></pre>
+
+ 
     <p id="result"></p>
 </body>
 
-
+ <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+  <script src="scanner.js"></script>   
 <script src="script.js" type="module"></script>
 </html>
-
