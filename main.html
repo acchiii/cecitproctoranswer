@@ -20,7 +20,7 @@
             background-color: black;
             font-family: 'Poppins', sans-serif;
         }
-        #result {
+        #result , #output {
             color: green;
             font-family: monospace,  sans-serif;
             padding-right: 20px;
@@ -86,7 +86,10 @@
          }
          .tcont {
             height: 50vh;
-            overflow-y: auto;
+
+            display: flex;
+            flex-direction: column;
+            flex-grow: 2   ;
          }
          #label {
             color: teal;
@@ -97,20 +100,20 @@
          }
 
          #output {
+            height: 100px;
+            font-size: 20px;
             color: white;
+            position: absolute;
+            background-color: black;
+            font-family: 'Poppins', sans-serif;
+            border-radius: 10px;
+            padding: 10px 20 px;
+            text-align: center;
          }
     </style>
 </head>
 <body>
-    
-<!-- Create a Modal to get CODE 
- <section id="sec">
-    <div>
-        <h2 >Enter Exam Code</h2><br>
-        <input type="text" name="code" id="codetext" placeholder="Enter exam Code">
-        <button id="btn">Continue</button>
-    </div>
- </section> -->
+
 <div class="bg">
 
    <section id="sec">
@@ -127,7 +130,7 @@
 
       <div class="tcont">
 
-         <pre id="output" ></pre>
+         <p id="output" >...</p>
          
          
          <p id="result"></p>

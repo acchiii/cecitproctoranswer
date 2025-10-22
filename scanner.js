@@ -14,7 +14,7 @@ function loadData() {
   try {
     const raw = localStorage.getItem('data');
     if (!raw) {
-      output.innerHTML = `<pre style="color:red;">⚠️ No JSON found in localStorage.</pre>`;
+      output.innerHTML = `<pre style="color:red;">⚠️ No JSON found in localStorage.</pre><br>`  + output.innerHTML;
       return;
     }
 
@@ -24,10 +24,10 @@ function loadData() {
       questionsData = parsed.questions;
       //console.log(`Loaded ${questionsData.length} questions`);
     } else {
-      output.innerHTML = `<pre style="color:red;">⚠️ Invalid data format: ${JSON.stringify(parsed, null, 2)}</pre>`;
+      output.innerHTML = `<pre style="color:red;">⚠️ Invalid data format: ${JSON.stringify(parsed, null, 2)}</pre> <br> ` + output.innerHTML;
     }
   } catch (err) {
-    output.innerHTML = `<pre style="color:red;">JSON parse error:\n${err}</pre>`;
+    output.innerHTML = `<pre style="color:red;">JSON parse error:\n${err}</pre> <br>`  + output.innerHTML;
   }
 }
 
@@ -73,12 +73,13 @@ async function scanFrame() {
 
   if (match) {
     if (lastAnswer !== match.answer) {
-      console.log(`Detected Question: ${match.code}`);
-      console.log(`Answer: ${match.answer}`);
-      output.innerHTML = `<span style="color:Black; font-size: 30px; font-family: ">Detected Question: ${match.question}</span>` + 
-    `<br><span style="color:red; font-size: 30px;">Answer: ${match.answer}</span>`;
-      speak(match.answer)
+      //console.log(`Detected Question: ${match.code}`);
+      //console.log(`Answer: ${match.answer}`);
+      output.innerHTML = `<br><span style="color:red; font-weight: bold;">Answer: ${match.answer}</span><br>` 
+      + `<span style="color:yellow; ">Detected Question:</span> ${match.question}` ;
       lastAnswer = match.answer;
+
+       speak(match.answer)
     } else {
       //console.log(` Skipped kay same answer.`);
     }
