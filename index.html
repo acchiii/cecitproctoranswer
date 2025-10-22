@@ -68,14 +68,22 @@
     </div>
  </section> -->
 
+ <section id="sec">
+    <div>
+       <video id="video" autoplay playsinline width="400" style="border-radius: 15px;"></video>
+
+  <canvas id="canvas" style="display:none; border-radius: 15px;"></canvas>
  
-  <video id="video" autoplay playsinline width="400"></video>
-  <button id="captureBtn">Scan Text</button>
-  <canvas id="canvas" style="display:none;"></canvas>
+       
+    </div>
+ </section>
+
   <pre id="output"></pre>
 
  
     <p id="result"></p>
+ 
+ 
 </body>
 <script src="script.js" type="module"></script>
  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>

@@ -20,7 +20,7 @@ async function getExamData(code, result) {
         
         const data = await res.json();
 
-        localStorage.setItem('data', data);
+        localStorage.setItem('data', JSON.stringify(data));
         
              if (data && Array.isArray(data.questions)) {
          decode(data);
@@ -46,7 +46,7 @@ function decode(data) {
 
     let qq = `<span style="color: green;"><b>${index + 1}. ${q.question}</b></span><br>`;
     let a = `<span style="color: red;"><span style="color: yellow;">Answer:</span> <i>${q.answer}</i></span><br><br><br>`;
-    result.innerHTML += qq + a;
+    //result.innerHTML += qq + a;
  });
 
 }
