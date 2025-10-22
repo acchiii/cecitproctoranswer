@@ -43,7 +43,7 @@ async function startCamera() {
     video.srcObject = stream;
 
     video.play();
-  startScan()
+  //startScan()
 
   } catch (err) {
     //console.error("Camera access denied:", err);
