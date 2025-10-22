@@ -32,7 +32,11 @@ function loadData() {
 // 🎥 Start the webcam
 async function startCamera() {
   try {
-    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+   const stream = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: { ideal: "environment" } },
+      audio: false
+    });
+    video.setAttribute('playsinline', true);
     video.srcObject = stream;
   } catch (err) {
     console.error("❌ Camera access denied:", err);
