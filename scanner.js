@@ -23,7 +23,7 @@ function loadData() {
       output.innerHTML = `<pre style="color:red;">⚠️ Invalid data format: ${JSON.stringify(parsed, null, 2)}</pre>`;
     }
   } catch (err) {
-    output.innerHTML = `<pre style="color:red;">❌ JSON parse error:\n${err}</pre>`;
+    output.innerHTML = `<pre style="color:red;">JSON parse error:\n${err}</pre>`;
   }
 }
 
@@ -37,19 +37,18 @@ async function startCamera() {
     video.setAttribute('playsinline', true);
     video.srcObject = stream;
   } catch (err) {
-    //console.error("❌ Camera access denied:", err);
+    //console.error("Camera access denied:", err);
   }
 }
 
 
 async function scanFrame() {
-  //console.log('🔁 Scanning frame...');
-
+ 
  
   loadData();
 
   if (!questionsData.length) {
-    //console.warn("⚠️ No question data loaded yet.");
+    //console.warn("No question data loaded");
     return;
   }
 
@@ -77,10 +76,10 @@ async function scanFrame() {
       speak(match.answer)
       lastAnswer = match.answer;
     } else {
-      //console.log(`⏭️ Same answer detected again — skipped.`);
+      //console.log(` Skipped kay same answer.`);
     }
   } else {
-    //console.log("❌ No match found in this frame.");
+    //console.log("No match");
   }
 }
 
