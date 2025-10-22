@@ -9,7 +9,7 @@
         * {
                 padding: 0;
                 margin: 0;
-                scrollbar-width: 0;
+                scrollbar-width: none;
                 overflow: auto;
                 font-family: monospace;
                 overflow-x: hidden;
@@ -83,6 +83,7 @@
          .cdat {
             position: sticky;
             z-index: 1000;
+            display: none;
          }
          .tcont {
             height: 50vh;
@@ -102,15 +103,30 @@
          #output {
             height: 100px;
             font-size: 20px;
-            color: white;
+            color: black;
             position: absolute;
-            background-color: black;
+            background-color: white;
             font-family: 'Poppins', sans-serif;
             border-radius: 10px;
-            padding: 10px 20 px;
+            padding: 10px 20px;
             text-align: center;
-            top: 0;
+            top: 50vh;
             z-index: 1000;
+            text-align: center;
+            margin: 0 10%;
+            border: 2px solid red;
+            height: auto;
+         }
+
+         #openCameraBtn {
+            overflow: hidden;
+               border-radius: 180px;
+               width: 80px;
+               height: 80px;
+               position: absolute;
+               bottom: 80px;
+               right: 80px;
+               background-color: teal;
          }
     </style>
 </head>
@@ -121,8 +137,12 @@
    <section id="sec">
       
       <div class="cont">
-      <div class="cdat">
-         <h2 id="label">Scan the Questions</h2>
+         
+         <input type="text" id="search" style="margin: 10px 0; padding: 5px 10px;" placeholder="Search Question"></input>
+      
+      <div class="cdat" id="cdat">
+   <h2 id="label">Scan the Questions</h2>
+         
          <video id="video" autoplay playsinline width="400" style="border-radius: 15px;"></video>
          
          <canvas id="canvas" style="display:none; border-radius: 15px;"></canvas>
@@ -132,7 +152,7 @@
 
       <div class="tcont">
 
-         <p id="output" >...</p>
+         <p id="output" >Answer shows here...</p>
          
          
          <p id="result"></p>
@@ -141,6 +161,15 @@
    </section>
 </div>
 
+
+<!-- floatingadd burron below right side -->
+     <button
+      id="openCameraBtn"  style="color: white; font-size: 30px; font-weight: bold;"
+             onclick=""
+      aria-label="Use Camera"   
+    >
+     📷
+    </button>
   
  
  

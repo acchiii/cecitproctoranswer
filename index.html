@@ -83,11 +83,34 @@
    </section>
       
       <script>
+
+         const xxx = "https://script.google.com/macros/s/AKfycbxw4dITKgZHApGwPWdciAWvMMofoT6-jwyqwQK-GPZLQxS23jQxEyWhGk53_58LHKcWIQ/exec";
+let a = '?action=getAllQuestionsAndAnswers&code=';
+
          document.getElementById('btn').addEventListener('click', function(){
             if(document.getElementById('codetext').value.length > 0){
+               document.getElementById('btn').style.display = 'none'
+
             localStorage.setItem('code', document.getElementById('codetext').value)
-            window.location = 'main.html'
+
+            const xx = `${xxx}${a}${encodeURIComponent(document.getElementById('codetext').value.toUpperCase())}`;
+  
+  try {
+    fetch(xx).then(response => response.json()).then(data => {
+          localStorage.setItem('data', JSON.stringify(data));
+          //alert(localStorage.getItem('data'))
+          window.location = 'main.html'
+    }).then(error =>{
+      console.log(error)
+       document.getElementById('btn').style.display = 'block'
+    })
+   }catch(error){ console.log(error); document.getElementById('btn').style.display = 'block'}
+
+
+            
+            
             } else {
+                document.getElementById('btn').style.display = 'block'
                alert('Enter Code')
             }
     })
