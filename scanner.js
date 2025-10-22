@@ -89,8 +89,8 @@ async function scanFrame() {
 }
 
 
-function startAutoScan() {
-  setInterval(scanFrame, 2000); 
+function startScan() {
+ scanFrame(); 
 }
 
 
@@ -108,5 +108,15 @@ function speak(text) {
 (async function init() {
   loadData();      
   await startCamera();
-  startAutoScan();
+
+  document.body.addEventListener('keydown', (event) =>{
+    if(event.key == 'Enter' || event.key == 'Space'){
+      startScan();
+    }
+  });
+
+  document.body.addEventListener('click', function(){
+    startScan();
+  })
+  
 })();
