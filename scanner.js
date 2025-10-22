@@ -3,20 +3,9 @@ const canvas = document.getElementById('canvas');
 const output = document.getElementById('output');
 const ctx = canvas.getContext('2d');
 
-let questionsData = [];
+let questionsData = localStorage.getItem('data');
 let lastAnswer = null; // track last logged answer
 
-// 1️⃣ Load your JSON data
-async function loadQuestions() {
-  try {
-    const res = await fetch('data (3).json');
-    const data = await res.json();
-    questionsData = data.questions;
-    console.log(`✅ Loaded ${questionsData.length} questions`);
-  } catch (err) {
-    console.error("❌ Failed to load JSON:", err);
-  }
-}
 
 // 2️⃣ Start the webcam
 async function startCamera() {
@@ -48,6 +37,7 @@ async function scanFrame() {
     if (lastAnswer !== match.answer) {
       console.log(`🧠 Question detected: ${match.code}`);
       console.log(`✅ Answer: ${match.answer}`);
+      document.getElementById('result').innerHTML = '<span style="color: green;">' + match.answer + '</span>';
       lastAnswer = match.answer;
     } else {
       console.log(`⏭️ Same question detected again, skipping...`);
