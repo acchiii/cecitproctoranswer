@@ -3,6 +3,8 @@
 const xxx = "https://script.google.com/macros/s/AKfycbxw4dITKgZHApGwPWdciAWvMMofoT6-jwyqwQK-GPZLQxS23jQxEyWhGk53_58LHKcWIQ/exec";
 let code = localStorage.getItem('code'); //IAS730Final
 let a = dsd('P2FjdGlvbj1nZXRBbGxRdWVzdGlvbnNBbmRBbnN3ZXJzJmNvZGU9'); //?action=getAllQuestionsAndAnswers&code=
+
+
 const result = document.getElementById('result');
 
 
@@ -44,8 +46,8 @@ async function getExamData(code, result) {
 function decode(data) {
  data.questions.forEach((q, index) => {
 
-    let qq = `<span style="color: green;"><b>${index + 1}. ${q.question}</b></span><br>`;
-    let a = `<span style="color: red;"><span style="color: blue;">Answer:</span> <i>${q.answer}</i></span><br><br><br>`;
+    let qq = `<span style="color: white;"><b>${index + 1}. ${q.question}</b></span><br>`;
+    let a = `<span style="color: red;"><span style="color: blue;">Answer:</span> <b><i>${q.answer}</i></b></span><br><br><br>`;
     result.innerHTML += qq + a;
  });
 
@@ -66,7 +68,7 @@ function dsd(a) {
 
 
 
- result.innerHTML += `<b style="color: orange;">Fetching Data of CODE: ${code}</b><br>`;
+ result.innerHTML += `<b style="color: green;">Fetching Data of Subject Code: <span style="decoration: underline">${code}</span></b><br>`;
         
 getExamData(code, result);
 

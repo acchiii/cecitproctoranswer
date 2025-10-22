@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CEC IT PROCTOR ANSWER</title>
-
+   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
                 padding: 0;
@@ -12,25 +12,30 @@
                 scrollbar-width: 0;
                 overflow: auto;
                 font-family: monospace;
+                overflow-x: hidden;
+                --webkit-scrollbar-width: 0;
+                
         }
         body {
             background-color: black;
+            font-family: 'Poppins', sans-serif;
         }
         #result {
             color: green;
             font-family: monospace,  sans-serif;
+            padding-right: 20px;
         }
          section {
             width: 100vw;
             height: 100vh;
-            background-color: rgba(0,0,0, 0.4);
+            background-color: rgba(0,0,0, 0.9);
             display: flex;
             align-items: center;
             justify-content: center;
          }
 
          div {
-            background-color: white;
+            background-color: transparent;
             border-radius: 15px;
             margin: auto;
             padding: 20px;
@@ -55,6 +60,45 @@
             border: 2px solid white;
             box-shadow: 1px 2px 3px rgba(0,0,0, 0.4);
          }
+
+         
+         .bg {
+            background-image: url('https://scontent.fceb2-2.fna.fbcdn.net/v/t39.30808-6/467686990_1101615251635433_9079035779926262456_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeE8VBJG10wGbzb_t_REBCjS2_9Tnh4f96_b_1OeHh_3r9GJWO9vyCmpt3KL0xg8_eALaT-ERjGr4zCQm99RfOuw&_nc_ohc=0h7gIkdd6x4Q7kNvwEUzX_6&_nc_oc=AdkGc8HJXA5WEzPzteagHB9guf63E4EmzosrtoIaIznRu5VahJv7-VwIp70zVWISw40&_nc_zt=23&_nc_ht=scontent.fceb2-2.fna&_nc_gid=hdE5HDJTh5QVMbNW_loYVA&oh=00_AfeuUj9QlfEjbrLVh9kYC_5La_ZjMpy02XAZ6HVnB0ksUw&oe=68FE6F4E');
+            background-position: cover;
+            background-repeat: no-repeat;
+           
+         }
+
+         .cont {
+            display: flex;
+            flex-wrap: wrap   ;
+            flex-grow: 2;
+            flex-direction: column;
+         }
+
+         .cont {
+            background-color: transparent;
+         }
+
+         .cdat {
+            position: sticky;
+            z-index: 1000;
+         }
+         .tcont {
+            height: 50vh;
+            overflow-y: auto;
+         }
+         #label {
+            color: teal;
+            padding: 8px 20px;
+            background-color: white;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+         }
+
+         #output {
+            color: white;
+         }
     </style>
 </head>
 <body>
@@ -67,19 +111,30 @@
         <button id="btn">Continue</button>
     </div>
  </section> -->
+<div class="bg">
 
- <section id="sec">
-    <div>
-       <video id="video" autoplay playsinline width="400" style="border-radius: 15px;"></video>
+   <section id="sec">
+      
+      <div class="cont">
+      <div class="cdat">
+         <h2 id="label">Scan the Questions</h2>
+         <video id="video" autoplay playsinline width="400" style="border-radius: 15px;"></video>
+         
+         <canvas id="canvas" style="display:none; border-radius: 15px;"></canvas>
+         
+       
+      </div>
 
-  <canvas id="canvas" style="display:none; border-radius: 15px;"></canvas>
- 
-       <pre id="output"></pre>
+      <div class="tcont">
 
- 
-    <p id="result"></p>
-    </div>
- </section>
+         <pre id="output" ></pre>
+         
+         
+         <p id="result"></p>
+      </div>
+      </div>
+   </section>
+</div>
 
   
  

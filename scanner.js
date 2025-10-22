@@ -1,10 +1,14 @@
 const video = document.getElementById('video');
 const canvas = document.getElementById('canvas');
-const output = document.getElementById('result');
+const output = document.getElementById('output');
+
+
 const ctx = canvas.getContext('2d');
 
 let questionsData = [];
 let lastAnswer = null;
+
+
 
 function loadData() {
   try {
@@ -71,7 +75,7 @@ async function scanFrame() {
     if (lastAnswer !== match.answer) {
       console.log(`Detected Question: ${match.code}`);
       console.log(`Answer: ${match.answer}`);
-      output.innerHTML = `<span style="color:Black; font-size: 30px;">Detected Question: ${match.question}</span>` + 
+      output.innerHTML = `<span style="color:Black; font-size: 30px; font-family: ">Detected Question: ${match.question}</span>` + 
     `<br><span style="color:red; font-size: 30px;">Answer: ${match.answer}</span>`;
       speak(match.answer)
       lastAnswer = match.answer;
